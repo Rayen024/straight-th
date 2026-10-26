@@ -1,0 +1,1401 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kabelin | Belajar Merakit Kabel LAN</title>
+<meta name="description" content="Media belajar interaktif untuk siswa TJKT kelas X: kabel UTP, alat, keselamatan kerja, urutan T568B, simulasi, panduan praktik, dan evaluasi.">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#EFF6FF',100:'#DBEAFE',600:'#2563EB',700:'#1D4ED8',800:'#1E40AF'},ink:{950:'#0F172A',700:'#334155',500:'#64748B'},card:'#FFFFFF',line:'#D5E0EA',canvas:'#F6F9FD'},fontFamily:{sans:['"Inter"','ui-sans-serif','system-ui','-apple-system','BlinkMacSystemFont','"Segoe UI"','Roboto','Arial','sans-serif'],mono:['"JetBrains Mono"','ui-monospace','Consolas','monospace']}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>:root{--ring:0 0 0 3px #fff,0 0 0 5px #2563EB;--bg:#F6F9FD}
+*,::before,::after{box-sizing:border-box;font-family:'Inter',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+body{font-family:'Inter',ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;line-height:1.6;background:#F6F9FD;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+p:not(.text-center):not(.text-right):not(.truncate),.leading-relaxed:not(.text-center):not(.text-right){text-align:justify;text-justify:inter-word;word-break:normal;overflow-wrap:break-word}
+@media(max-width:640px){
+  .overflow-x-auto{-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse}
+  .wire{width:44px;height:14px}
+  .wire.v{width:44px;height:14px}
+}input,button,select,textarea,optgroup{font-family:inherit}
+.card{background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid #E2EAF3;border-radius:20px;box-shadow:0 8px 30px rgba(37,99,235,.07)}
+.hard{box-shadow:0 12px 32px rgba(59,130,246,.18)}
+.blob{border-radius:63% 37% 54% 46%/55% 48% 52% 45%}
+a,button,label,summary,select{cursor:pointer}
+button:disabled{cursor:not-allowed}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:8px;top:8px;background:#fff;padding:8px;z-index:99}
+:focus-visible{outline:none;box-shadow:var(--ring)}
+.wire{display:inline-block;flex:none;width:56px;height:16px;border-radius:8px;background:var(--c);border:1px solid rgba(0,0,0,.3)}
+.wire.v{width:56px;height:16px}
+@media(min-width:640px){.wire.v{width:16px;height:72px}}
+.wire.stripe{background:repeating-linear-gradient(45deg,#fff 0 6px,var(--c) 6px 12px)}
+#side{transition:transform .2s,visibility .2s}
+@media(max-width:1023px){#side{transform:translateX(-100%);visibility:hidden;box-shadow:0 8px 24px rgba(17,24,39,.3)}#side.open{transform:none;visibility:visible}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+progress{display:block;appearance:none;height:14px;border-radius:999px;overflow:hidden;background:#E8EFF7;border:1px solid #D5E0EA}
+progress::-webkit-progress-bar{background:#E8EFF7}
+progress::-webkit-progress-value{background:#2563EB;transition:width .2s}
+progress::-moz-progress-bar{background:#2563EB}
+input[type=checkbox],input[type=radio]{accent-color:#2563EB}
+dialog::backdrop{background:rgba(17,24,39,.5)}
+@keyframes pop{from{transform:scale(.94)}to{transform:none}}
+.pop{animation:pop .18s ease-out}
+.wire.vv{width:16px;height:84px}
+body[data-m=l] #mh,body[data-m=l] #side,body[data-m=l] #bd{display:none!important}
+body[data-m=l] main{margin-left:0!important;padding:0!important;padding-bottom:1.5rem!important}
+body[data-m=l] #view{max-width:100%!important;width:100%!important}
+body[data-m=l]{background:#F6FAFD}
+.landing{position:relative;overflow-x:clip}.landing-shell{width:100%;max-width:1320px;overflow-x:hidden}.wire-card{min-width:0;max-width:100%}.wire-card .wire{width:38px;height:12px}@media(min-width:640px){.wire-card .wire{width:44px;height:13px}}
+.lbtn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:none;border-radius:12px;background:rgba(255,255,255,.8);font-size:14px;font-weight:500;color:#0F172A;transition:background-color .15s}
+.lbtn:hover{background:#fff}
+.ldark{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;background:#0F172A;color:#fff;font-weight:600;transition:background-color .15s}
+.ldark:hover{background:#334155}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(55% 38% at 0% 58%,rgba(96,165,250,.26),transparent 70%),radial-gradient(55% 38% at 100% 42%,rgba(96,165,250,.2),transparent 70%)}
+</style>
+</head>
+<body class="text-ink-950 font-sans">
+<a href="#main" class="skip">Lewati ke konten utama</a>
+<header id="mh" class="lg:hidden sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200/70 text-slate-900 flex items-center justify-between px-4 h-14">
+  <a href="#/beranda" class="inline-flex items-center gap-2 font-bold text-slate-900">
+    <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-blue-50 text-blue-600 border border-blue-100/60"><svg class="w-3.5 h-3.5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span>
+    Kabelin
+  </a>
+  <div class="flex items-center gap-2">
+    <span id="mp" class="text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-100/80 px-2.5 py-1 rounded-full"></span>
+    <button id="menu" aria-expanded="false" aria-controls="side" class="inline-flex items-center gap-1.5 px-3 py-1.5 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs rounded-xl shadow-xs transition-colors">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      Menu
+    </button>
+  </div>
+</header>
+<div id="bd" class="fixed inset-0 z-30 bg-black/40 backdrop-blur-xs hidden" aria-hidden="true"></div>
+<aside id="side" aria-label="Navigasi utama" class="fixed inset-y-0 left-0 z-40 w-64 bg-white/95 backdrop-blur-md border-r border-slate-200/70 text-slate-900 flex flex-col justify-between">
+  <div class="p-5 overflow-y-auto flex-1">
+    <a href="#/beranda" class="inline-flex items-center gap-2.5 font-bold text-lg text-slate-900 mb-4 transition hover:opacity-85">
+      <span class="flex items-center justify-center w-8 h-8 rounded-xl bg-blue-50 text-blue-600 border border-blue-100/60"><svg class="w-4 h-4 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></span>
+      Kabelin
+    </a>
+    <div id="sp" class="mb-5"></div>
+    <nav aria-label="Menu modul"><ul id="nav" class="space-y-1"></ul></nav>
+  </div>
+  <div class="p-4 border-t border-slate-200/70 bg-white/60">
+    <a href="#/beranda" class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-all border border-slate-200/60 bg-slate-50/70 shadow-2xs group">
+      <svg class="w-4 h-4 text-slate-500 group-hover:text-blue-600 transition-transform group-hover:-translate-x-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      <span>Kembali ke Beranda</span>
+    </a>
+  </div>
+</aside>
+<main id="main" class="lg:ml-64 p-3 sm:p-6 lg:p-8 pb-12 sm:pb-16"><div id="view" class="max-w-[1000px] mx-auto"></div></main>
+<noscript><p class="p-4">Website ini memerlukan JavaScript.</p></noscript>
+<script>window.App={pages:{},MANUAL:['simulasi','evaluasi'],CFG:{pass:70}};
+(function(A){
+A.NAV=[['materi','Materi'],['alat','Alat & Bahan'],['keselamatan','Keselamatan'],['simulasi','Simulasi'],['panduan','Panduan Praktik'],['evaluasi','Evaluasi'],['progres','Progres Sesi']];
+A.LABEL=Object.fromEntries(A.NAV);A.LABEL.beranda='Beranda';A.LABEL.materi='Materi';A.LABEL.tujuan='Materi';A.LABEL.lan='Materi';A.LABEL.utp='Materi';A.LABEL.t568b='Materi';A.LABEL.checklist='Panduan Praktik';A.LABEL.tester='Panduan Praktik';
+// Urutan array = pin 1 sampai 8 standar T568B
+A.WIRES=[
+{id:'wo',name:'Putih-oranye',c:'#f97316',s:1},{id:'o',name:'Oranye',c:'#f97316'},
+{id:'wg',name:'Putih-hijau',c:'#16a34a',s:1},{id:'b',name:'Biru',c:'#2563eb'},
+{id:'wb',name:'Putih-biru',c:'#2563eb',s:1},{id:'g',name:'Hijau',c:'#16a34a'},
+{id:'wc',name:'Putih-cokelat',c:'#92400e',s:1},{id:'c',name:'Cokelat',c:'#92400e'}];
+A.TOOLS=[
+{n:'Kabel UTP Cat 5E',k:'Bahan',i:'utp',img:'kabel-utp.svg',f:'Kabel empat pasang berbelit dengan delapan kawat tembaga. Cat 5E mendukung kecepatan <i>transfer data</i> hingga <i>Gigabit</i> (1 Gbps) dengan jarak transmisi maksimal 100 meter.',u:'Standar kabel LAN yang umum digunakan di laboratorium dan jaringan lokal.'},
+{n:'Konektor RJ-45',k:'Bahan',i:'rj45',img:'konektor-rj45.svg',f:'Satu untuk setiap ujung kabel (total 2 unit). Siapkan cadangan karena <i>crimp</i> pertama sering perlu diulang, dan memiliki 8 <i>pin</i> tembaga presisi.',u:'Dipasang pada ujung kabel UTP agar dapat terhubung ke <i>port</i> LAN.'},
+{n:'Tang crimping',k:'Alat',i:'crimp',img:'tang-crimping.svg',f:'Menekan <i>pin</i> konektor menembus isolasi kawat dan menjepit jaket pelindung kabel. Banyak tipe yang sudah dilengkapi pisau potong dan <i>stripper</i> bawaan.',u:'Alat utama untuk memotong dan meng-<i>crimp</i> konektor RJ-45.'},
+{n:'LAN tester',k:'Alat',i:'tester',img:'lan-tester.svg',f:'Memeriksa apakah kedelapan kawat tersambung ke <i>pin</i> yang benar di kedua ujung secara berurutan.',u:'Terdiri dari dua unit, yaitu unit utama (<i>master</i>) dan unit <i>remote</i>.'},
+{n:'Stripper kabel',k:'Alat',optional:true,img:'stripper.svg',f:'Mengupas jaket luar pelindung kabel tanpa melukai kawat tembaga di dalamnya.',u:'Opsional. Bila tidak ada, bagian pengupas pada tang <i>crimping</i> dapat digunakan.'}];
+const W='Arahkan pemotong tang menjauhi tubuh dan teman.';
+A.STEPS = [
+  {
+    t: 'Ukur dan potong kabel',
+    d: 'Potong kabel UTP sesuai jarak antar perangkat, lalu tambahkan sisa sekitar 30 cm untuk berjaga-jaga bila perlu <i>crimp</i> ulang. Pastikan potongan ujung kabel rata.'
+  },
+  {
+    t: 'Kupas jaket luar',
+    d: 'Kupas jaket luar sepanjang 2 sampai 3 cm dengan <i>stripper</i> (jika ada) atau pakai tang <i>crimping</i>. Putar pelan dan jangan menekan terlalu dalam supaya isolasi kawat di dalamnya tidak tergores.'
+  },
+  {
+    t: 'Urai pasangan kawat',
+    d: 'Pisahkan empat pasang kawat, lalu luruskan satu per satu dengan jari. Buang benang penarik atau pemisah plastik bila ada.'
+  },
+  {
+    t: 'Susun urutan warna T568B',
+    d: 'Susun delapan kawat secara berdampingan sesuai urutan standar T568B dari <i>pin</i> 1 (kiri) ke <i>pin</i> 8 (kanan). Pastikan kawat tersusun rata, rapat, dan posisinya tidak saling bersilangan.'
+  },
+  {
+    t: 'Ratakan dan potong kawat',
+    d: 'Pegang kawat dengan rapat dan rata, lalu potong lurus menggunakan tang <i>crimping</i> sehingga panjang kawat yang terbuka sekitar 1,2 cm.'
+  },
+  {
+    t: 'Masukkan kawat ke RJ-45',
+    d: 'Pegang konektor RJ-45 dengan <i>clip</i> di bawah dan <i>pin</i> 1 di kiri. Masukkan kawat ke dalam konektor secara perlahan hingga ujung kawat mentok di ujung konektor.'
+  },
+  {
+    t: 'Jepit dengan tang crimping',
+    d: 'Masukkan konektor RJ-45 ke dalam lubang 8P pada tang <i>crimping</i>. Tekan tang dengan kuat dan mantap sampai konektor terkunci dengan baik.'
+  },
+  {
+    t: 'Ulangi pada ujung kedua',
+    d: 'Lakukan kembali langkah 1 sampai 7 pada ujung kabel yang lain dengan urutan standar T568B yang persis sama.'
+  },
+  {
+    t: 'Uji dengan LAN tester',
+    d: 'Colokkan kedua ujung kabel ke unit <i>master</i> dan unit <i>remote</i> pada LAN <i>tester</i>. Nyalakan <i>tester</i> dan amati nyala lampu LED 1 sampai 8.'
+  }
+];
+A.QUIZ=[
+{q:'UTP adalah singkatan dari…',o:['Unshielded Twisted Pair','Universal Transfer Port','United Terminal Protocol'],a:0,t:'materi'},
+{q:'Panjang kabel UTP maksimal tanpa repeater adalah…',o:['50 meter','100 meter','1000 meter'],a:1,t:'materi'},
+{q:'Pada jaringan 100 Mbps, pin yang mengirim data adalah…',o:['Pin 1 dan 2','Pin 4 dan 5','Pin 7 dan 8'],a:0,t:'materi'},
+{q:'Alat yang menjepit konektor RJ-45 pada kabel UTP adalah…',o:['LAN tester','Tang crimping','Switch'],a:1,t:'alat'},
+{q:'LAN tester terdiri dari…',o:['Satu unit saja','Unit utama dan unit remote','Tiga unit'],a:1,t:'alat'},
+{q:'Pada T568B, pin 1 berwarna…',o:['Oranye','Putih-oranye','Putih-hijau'],a:1,t:'materi'},
+{q:'Kabel straight dipakai untuk menghubungkan…',o:['Komputer ke switch','Kabel listrik ke komputer','Printer ke kabel telepon'],a:0,t:'materi'},
+{q:'Potongan kabel setelah dipotong harus…',o:['Dibuang ke tempat sampah','Dibiarkan di meja','Dikumpulkan di lantai'],a:0,t:'keselamatan'},
+{q:'Hasil LAN tester yang normal pada kabel straight adalah…',o:['Hanya lampu 1 yang menyala','Lampu 1 sampai 8 menyala berurutan di kedua unit','Semua lampu mati'],a:1,t:'tester'},
+{q:'Satu atau beberapa lampu tester tidak menyala. Kemungkinan penyebabnya…',o:['Kabel belum masuk penuh atau crimping kurang kuat','Kabel sudah sempurna','Tester terlalu terang'],a:0,t:'tester'}];
+const T=(h,r)=>`<div class="overflow-x-auto"><table class="w-full text-left text-base"><thead><tr>${h.map(x=>`<th class="p-2 border-b border-line">${x}</th>`).join('')}</tr></thead><tbody>${r.map(a=>`<tr>${a.map((c,i)=>`<td class="p-2 border-b border-line/30 align-top ${i?'':'font-semibold'}">${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const H=t=>`<h2 class="text-xl font-semibold mt-4 text-ink-950">${t}</h2>`;
+const L=a=>`<ul class="list-disc pl-6 space-y-1">${a.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+const pn=['Putih-oranye','Oranye','Putih-hijau','Biru','Putih-biru','Hijau','Putih-cokelat','Cokelat'];
+A.HTML={
+tujuan:L(['Menjelaskan konsep dasar jaringan LAN dan perangkat penyusunnya.','Menjelaskan karakteristik kabel UTP Cat 5E.','Mengenali fungsi alat dan bahan pembuatan kabel straight.','Menerapkan keselamatan kerja.','Menyusun delapan kabel sesuai standar T568B.','Membuat kabel straight dengan langkah kerja yang benar.','Menguji kabel dengan LAN tester dan membaca hasilnya.']),
+lan:H('Pengertian')+'<p>LAN (<i>Local Area Network</i>) adalah jaringan komputer yang menghubungkan perangkat dalam area terbatas. Contohnya satu laboratorium, satu gedung sekolah, atau satu kantor.</p>'+H('Fungsi LAN')+L(['Berbagi data dan file antar komputer.','Berbagi printer.','Berbagi koneksi internet.','Memudahkan komunikasi antar komputer.'])+H('Perangkat Penyusun LAN')+T(['Perangkat','Fungsi'],[['Komputer','Mengirim dan menerima data. Komputer memakai kartu jaringan (NIC) untuk terhubung ke LAN.'],['Switch','Menghubungkan banyak perangkat dalam satu LAN.'],['Hub','Menghubungkan banyak perangkat dalam satu LAN. Hub mengirim data ke semua port.'],['Router','Menghubungkan LAN ke jaringan lain, misalnya internet.'],['Kabel jaringan','Membawa sinyal data antar perangkat. Kabel yang paling sering dipakai di LAN adalah kabel UTP.']])+H('Keunggulan Jaringan Berkabel UTP')+L(['Biaya pembangunan lebih murah dibanding jaringan nirkabel.','Transmisi data lebih stabil.','Tidak terpengaruh cuaca.']),
+utp:H('Pengertian')+'<p>UTP berarti Unshielded Twisted Pair. Kabel ini berisi delapan kabel tembaga berselubung warna. Kabel itu dipilin menjadi empat pasang. Pilinan mengurangi gangguan antar pasangan kabel. Kabel UTP tidak memiliki pelindung logam.</p>'+H('Karakteristik Kabel UTP')+L(['Bagian luar kabel dibungkus isolator sebagai pelindung.','Kabel berisi 4 pasang kabel berpilin dengan warna standar.','Kabel memakai konektor RJ-45.','Panjang kabel maksimal 100 meter. Bila lebih panjang, jaringan membutuhkan repeater.','Kecepatan kabel Cat 5 hingga 100 Mbps. Kabel Cat 5E yang dipakai di kelas ini mendukung hingga 1 Gbps.','Pin 1 dan 2 mengirim data. Pin 3 dan 6 menerima data.','Pin 4, 5, 7, dan 8 tidak membawa data pada jaringan 100 Mbps. Pada jaringan Gigabit, keempat pin ini ikut membawa data. Sebagian perangkat juga memakainya untuk menyalurkan daya (PoE).']),
+keselamatan:L(['Arahkan pemotong tang menjauhi tubuh dan teman.','Buang potongan kabel ke tempat sampah.','Jangan menekan tang crimping dengan paksa.']),
+straight:`<section class="card p-6 text-base space-y-2 text-ink-700"><h2 class="text-xl font-semibold text-ink-950">Kabel Straight</h2><p>Kabel straight memiliki susunan warna yang sama persis di kedua ujung konektor. Kabel ini menghubungkan dua perangkat yang berbeda jenis. Contohnya komputer ke switch, komputer ke hub, serta router ke switch atau hub.</p><p>Kabel straight adalah susunan baku kabel UTP. Dalam praktik pembuatan LAN sehari-hari, kabel straight memakai standar T568B.</p>${T(['Pin','Ujung Konektor 1','Ujung Konektor 2'],pn.map((n,i)=>[i+1,n,n]))}<p class="border border-green-300 bg-green-50 text-green-800 rounded-xl p-4"><b>Hasil LAN tester yang normal:</b> Lampu 1 sampai 8 menyala berurutan di kedua unit.</p></section>`,
+tester:'<p>LAN tester mengalirkan sinyal melalui kabel. Kabel yang di-crimping dengan baik menyalurkan sinyal ke lampu indikator sesuai urutan tipe kabel.</p>'+H('Cara Menguji')+'<ol class="list-decimal pl-6 space-y-1"><li>Colok satu ujung kabel ke unit utama LAN tester.</li><li>Colok ujung kabel yang lain ke unit remote.</li><li>Nyalakan LAN tester.</li><li>Amati lampu 1 sampai 8 pada kedua unit.</li><li>Baca hasilnya dengan tabel di bawah.</li></ol>'+H('Membaca Hasil Uji')+T(['Hasil pada Tester','Kemungkinan Penyebab','Tindakan'],[['Lampu 1 sampai 8 menyala berurutan di kedua unit','Kabel straight benar.','Kabel siap dipakai.'],['Urutan lampu tidak sama (misal: 1, 2, 3, 6, 5, 4, 7, 8)','Warna kabel tertukar.','Potong konektor. Susun ulang dan pasang konektor baru.'],['Satu atau beberapa lampu tidak menyala','Kabel belum masuk penuh atau crimping kurang kuat.','Tekan crimping ulang. Bila tetap mati, ulangi pemasangan konektor.'],['Semua lampu tidak menyala','Tester belum menyala, kabel belum tersambung ke kedua unit, atau kabel putus.','Periksa tester dan sambungan. Periksa kedua ujung kabel.']]),
+ciri:`<div class="grid md:grid-cols-2 gap-4 mt-8 text-base text-ink-700"><section class="card p-6"><h2 class="text-xl font-semibold text-ink-950 mb-2">Ciri Kabel yang Baik dan Benar</h2>${L(['Urutan warna sesuai T568B di kedua ujung.','Delapan kabel masuk penuh. Ujung tembaga terlihat jelas di ujung konektor.','Selubung kabel masuk ke konektor dan terjepit oleh klip.','Inti kabel tidak rusak.','Konektor tidak goyang saat kabel ditarik pelan.'])}</section><section class="card p-6"><h2 class="text-xl font-semibold text-ink-950 mb-2">Kesalahan yang Sering Terjadi</h2>${T(['Kesalahan','Akibat'],[['Kupasan terlalu panjang','Kabel mudah terlepas dan tidak rapi.'],['Kupasan terlalu pendek','Kabel tidak menyentuh pin konektor.'],['Warna tertukar','Hasil uji tidak berurutan.'],['Kabel tidak masuk mentok','Satu atau lebih lampu tester tidak menyala.']])}</section></div>`};
+})(App);
+</script>
+<script>(function(A){
+let d=[];try{d=JSON.parse(sessionStorage.getItem('done')||'[]')}catch(e){}
+A.done=new Set(d);
+A.mark=id=>{A.done.add(id);try{sessionStorage.setItem('done',JSON.stringify([...A.done]))}catch(e){}A.onMark&&A.onMark()};
+})(App);
+</script>
+<script>(function(A){
+const P={
+arrow:'<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+ok:'<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+warn:'<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+err:'<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
+info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+check:'<path d="M20 6 9 17l-5-5"/>',
+home:'<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+book:'<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
+wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/>',
+list:'<path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/>',
+shield:'<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
+plug:'<path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/>',
+play:'<polygon points="6 3 20 12 6 21 6 3"/>',
+clip:'<rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/>',
+pulse:'<path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/>',
+pencil:'<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/>',
+bars:'<line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/>'};
+A.ic=(n,c='w-5 h-5')=>`<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]||''}</svg>`;
+A.NAVIC={beranda:'home',materi:'book',tujuan:'target',utp:'book',alat:'wrench',checklist:'list',keselamatan:'shield',t568b:'plug',simulasi:'play',panduan:'clip',tester:'pulse',evaluasi:'pencil',progres:'bars'};
+})(App);
+</script>
+<script>(function(A){
+A.btn='inline-flex items-center justify-center gap-2 font-semibold text-sm rounded-xl px-5 min-h-[44px] bg-blue-600 hover:bg-blue-700 active:scale-[0.98] text-white shadow-[0_4px_12px_rgba(37,99,235,0.25)] transition-all';
+A.btn2='inline-flex items-center justify-center gap-2 font-medium text-sm rounded-xl px-5 min-h-[44px] bg-white border border-slate-200 hover:bg-slate-50 active:scale-[0.98] text-slate-700 shadow-xs transition-all';
+A.wire=(w,v)=>`<span class="wire ${w.s?'stripe':''} ${v?'v':''}" style="--c:${w.c}" aria-hidden="true"></span>`;
+const N={ok:['bg-green-50 text-green-800 border-green-300','ok'],warn:['bg-amber-50 text-amber-800 border-amber-300','warn'],err:['bg-red-50 text-red-700 border-red-300','err'],info:['bg-sky-50 text-sky-800 border-sky-300','info']};
+A.notice=(t,m)=>`<div class="flex gap-3 border rounded-xl p-4 ${N[t][0]}">${A.ic(N[t][1],'w-5 h-5 shrink-0 mt-0.5')}<div>${m}</div></div>`;
+})(App);
+
+(function(A){
+const s=(l,b)=>`<svg viewBox="0 0 64 64" class="w-16 h-16" role="img" aria-label="${l}">${b}</svg>`;
+const pins=[...Array(8)].map((_,i)=>`<rect x="${16+i*4.2}" y="30" width="2.4" height="16" fill="#d4a017"/>`).join('');
+const leds=[...Array(8)].map((_,i)=>`<circle cx="${14+i*5}" cy="26" r="1.8" fill="#16a34a"/>`).join('');
+A.icons={
+utp:s('Ilustrasi kabel UTP','<rect x="3" y="22" width="20" height="20" rx="6" fill="#2563eb"/><g fill="none" stroke-width="3" stroke-linecap="round"><path d="M23 26q7-7 14 0t14 0t10 0" stroke="#f97316"/><path d="M23 31q7-7 14 0t14 0t10 0" stroke="#16a34a"/><path d="M23 36q7-7 14 0t14 0t10 0" stroke="#2563eb"/><path d="M23 41q7-7 14 0t14 0t10 0" stroke="#92400e"/></g>'),
+rj45:s('Ilustrasi konektor RJ-45','<rect x="12" y="14" width="40" height="36" rx="4" fill="#e5e7eb" stroke="#6b7280" stroke-width="2"/><rect x="24" y="8" width="16" height="8" rx="2" fill="#9ca3af"/>'+pins),
+crimp:s('Ilustrasi tang crimping','<path d="M12 8l20 22M52 8L32 30" stroke="#6b7280" stroke-width="6" stroke-linecap="round"/><path d="M32 30L16 58M32 30l16 28" stroke="#dc2626" stroke-width="7" stroke-linecap="round"/><circle cx="32" cy="30" r="4" fill="#111827"/>'),
+tester:s('Ilustrasi LAN tester','<rect x="6" y="14" width="52" height="36" rx="6" fill="#374151"/>'+leds+'<rect x="12" y="34" width="16" height="10" rx="2" fill="#9ca3af"/><rect x="36" y="34" width="16" height="10" rx="2" fill="#9ca3af"/>'),
+stripper:s('Ilustrasi stripper kabel','<rect x="18" y="16" width="28" height="32" rx="8" fill="#f59e0b"/><circle cx="32" cy="28" r="7" fill="#ffffff" stroke="#d97706" stroke-width="3"/><rect x="30" y="20" width="4" height="16" fill="#475569"/><rect x="22" y="44" width="20" height="4" rx="2" fill="#d97706"/>')};
+A.ask=(msg,ok,cb)=>{const prev=document.activeElement,d=document.createElement('dialog');
+d.className='card hard p-6 max-w-sm';d.setAttribute('aria-label','Konfirmasi');
+d.innerHTML=`<p class="mb-4 text-ink-950">${msg}</p><div class="flex gap-3 justify-end"><button value="no" class="${A.btn2}">Batal</button><button value="yes" class="${A.btn}">${ok}</button></div>`;
+const end=()=>{d.remove();prev&&prev.isConnected&&prev.focus()};
+d.onclick=e=>{const v=e.target.value;if(!v)return;d.close();end();if(v==='yes')cb()};
+d.oncancel=end;document.body.append(d);d.showModal();d.querySelector('button').focus()};
+})(App);
+</script>
+<script>(function(A){
+const P=A.pages,box='card p-6  space-y-2 text-ink-700';
+const stat=(id,t)=>{P[id]={t,render:el=>{el.innerHTML=`<div class="${box} max-w-3xl text-lg">${A.HTML[id]}</div>`}}};
+stat('keselamatan','Keselamatan Kerja');stat('tester','Memeriksa Kabel dengan LAN Tester');
+P.materi = {
+  t: 'Materi: Konsep LAN, Kabel UTP & Urutan Straight',
+  render: el => {
+    el.innerHTML = `<div class="space-y-8">
+      <!-- PENGAMATAN KASUS / ORIENTASI -->
+      <section class="rounded-2xl sm:rounded-3xl border border-blue-200/80 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 p-4 sm:p-6 lg:p-8 shadow-[0_4px_24px_rgba(37,99,235,0.06)] space-y-5 sm:space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-blue-100/80 pb-4">
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-10 h-10 rounded-2xl bg-blue-600 text-white shadow-md shadow-blue-500/20">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </span>
+            <div>
+              <h2 class="text-lg sm:text-xl font-bold text-slate-900">Pengamatan Praktik Perakitan Kabel LAN</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Simak video perakitan di bawah dan diskusikan bersama teman kelompok</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-[330px_1fr] gap-6 items-start">
+          <!-- Video Frame / Embed TikTok -->
+          <div class="flex flex-col items-center">
+            <div class="w-full max-w-[325px] rounded-2xl overflow-hidden border border-slate-200/80 bg-black shadow-md relative" style="aspect-ratio: 9/16; max-height: 520px;">
+              <iframe 
+                src="https://www.tiktok.com/player/v1/7324907109328473350?embed_from=oembed" 
+                class="w-full h-full border-0 absolute inset-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen 
+                loading="lazy"
+                title="Video Praktik Perakitan Kabel LAN">
+              </iframe>
+            </div>
+            
+            <a href="https://vt.tiktok.com/ZSgQBvyCY/" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-semibold text-slate-700 transition shadow-2xs">
+              <svg class="w-3.5 h-3.5 text-slate-900" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.47v-8.4a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-.02-.01z"/></svg>
+              Buka Video di TikTok
+              <svg class="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <p class="text-[11px] text-slate-400 text-center mt-1">Jika video tidak termuat karena jaringan sekolah, klik tombol di atas.</p>
+          </div>
+
+          <!-- Kolom Informasi & Instruksi LKPD -->
+          <div class="space-y-4">
+            <div class="p-4 rounded-2xl bg-white/90 border border-blue-100/90 shadow-2xs space-y-2">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-blue-700">Situasi Masalah Nyata</h3>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                Kabel LAN membantu perangkat saling terhubung dan bertukar data. Tapi, pernah nggak sih, kabel sudah selesai dirakit, malah koneksinya tidak jalan? Bisa jadi urutan warnanya kurang tepat, lampu <i>tester</i> tidak menyala berurutan, atau kawat kabel belum menyentuh ujung <i>pin</i>.
+              </p>
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                Amatilah video di samping yang memperlihatkan siswa saat melaksanakan proses perakitan kabel LAN <i>straight</i> dan pengujiannya.
+              </p>
+            </div>
+
+            <!-- Instruksi Pengerjaan LKPD -->
+            <div class="rounded-2xl border border-slate-200 bg-white shadow-2xs overflow-hidden">
+              <div class="px-4 py-3 border-b border-slate-200 bg-blue-50/60">
+                <p class="text-[11px] font-bold text-blue-700 uppercase tracking-wider flex items-center gap-1.5">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  Instruksi Pengerjaan LKPD
+                </p>
+                <h3 class="text-sm font-bold text-slate-900 mt-0.5">Tugas Pengamatan Kelompok</h3>
+              </div>
+              
+              <div class="p-4 space-y-3">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                  Setelah mengamati tayangan video di samping, diskusikan bersama kelompok Anda dan kerjakan instruksi berikut:
+                </p>
+
+                <!-- Perintah Tabel 1.1 -->
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <h4 class="text-xs sm:text-sm font-bold text-slate-800">Tabel 1.1: Perbedaan Kabel & Hasil Pengujian</h4>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed pt-0.5">
+                    Tulis perbedaan yang kelompok amati pada kedua kabel dan hasil pengujiannya pada <strong>Tabel 1.1</strong> di LKPD.
+                  </p>
+                </div>
+
+                <!-- Perintah Tabel 1.2 -->
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-1">
+                  <h4 class="text-xs sm:text-sm font-bold text-slate-800">Tabel 1.2: Dugaan Masalah Indikator</h4>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed pt-0.5">
+                    Tulis dugaan kelompok mengapa lampu pada satu kabel menyala tidak berurutan pada <strong>Tabel 1.2</strong> di LKPD.
+                  </p>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-slate-500">
+                  <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <span>Tuliskan jawaban langsung di lembar fisik LKPD masing-masing kelompok.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1. KONSEP DASAR LAN -->
+      <section class="rounded-2xl sm:rounded-3xl border border-slate-200/70 bg-white p-4 sm:p-6 lg:p-8 shadow-[0_4px_24px_rgba(15,23,42,0.03)] space-y-5 sm:space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 text-blue-600 border border-blue-100">${A.ic('home','w-5 h-5')}</span>
+          <div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Bagian 1</span>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900">Konsep Dasar Jaringan LAN</h2>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600">Pengertian LAN</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              <b>LAN (<i>Local Area Network</i>)</b> adalah jaringan komputer yang menghubungkan komputer dan perangkat lain dalam jangkauan area terbatas, seperti ruangan laboratorium komputer, gedung sekolah, rumah, atau kantor.
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600">Fungsi Utama LAN</h3>
+            <ul class="text-sm text-slate-700 space-y-1.5">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Berbagi <i>file</i> dan <i>folder</i> data antar-komputer</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Berbagi perangkat <i>printer</i> atau <i>scanner</i> bersama</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Berbagi sambungan koneksi internet secara terpusat</li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Memudahkan komunikasi dan <i>transfer data</i> lokal</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Perangkat Penyusun LAN -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Perangkat Penyusun Jaringan LAN</h3>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200/70">
+            <table class="w-full text-left text-sm min-w-[520px]">
+              <thead class="bg-slate-50 border-b border-slate-200/70 text-slate-600 font-semibold">
+                <tr>
+                  <th class="p-3.5 pl-4">Perangkat</th>
+                  <th class="p-3.5 pr-4">Fungsi dalam Jaringan</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                <tr><td class="p-3.5 pl-4 font-semibold text-slate-900">Komputer / Laptop</td><td class="p-3.5 pr-4">Mengirim dan menerima data melalui kartu jaringan (NIC / LAN <i>Card</i>).</td></tr>
+                <tr><td class="p-3.5 pl-4 font-semibold text-slate-900"><i>Switch</i></td><td class="p-3.5 pr-4">Menghubungkan banyak perangkat dalam satu LAN dan meneruskan data secara selektif ke <i>port</i> tujuan.</td></tr>
+                <tr><td class="p-3.5 pl-4 font-semibold text-slate-900"><i>Hub</i></td><td class="p-3.5 pr-4">Menghubungkan banyak perangkat dengan menyebarkan data ke semua <i>port</i> tanpa seleksi.</td></tr>
+                <tr><td class="p-3.5 pl-4 font-semibold text-slate-900"><i>Router</i></td><td class="p-3.5 pr-4">Menghubungkan jaringan lokal (LAN) ke jaringan lain yang berbeda, misalnya internet.</td></tr>
+                <tr><td class="p-3.5 pl-4 font-semibold text-slate-900">Kabel UTP</td><td class="p-3.5 pr-4">Media transmisi fisik yang membawa aliran sinyal data antar-perangkat secara stabil.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Keunggulan Jaringan Berkabel UTP -->
+        <div class="p-5 rounded-2xl bg-blue-50/60 border border-blue-100 space-y-3">
+          <h3 class="text-xs font-bold text-blue-900 uppercase tracking-wider">Keunggulan Jaringan Berkabel (UTP)</h3>
+          <div class="grid sm:grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-xl bg-white border border-blue-100 shadow-2xs">
+              <p class="font-bold text-xs text-blue-800 mb-1">Biaya Lebih Hemat</p>
+              <p class="text-xs text-slate-600">Pemasangan dan biaya kabel relatif terjangkau dibanding <i>fiber optic</i> atau perangkat <i>wireless</i>.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white border border-blue-100 shadow-2xs">
+              <p class="font-bold text-xs text-blue-800 mb-1">Transmisi Lebih Stabil</p>
+              <p class="text-xs text-slate-600">Kecepatan transmisi konsisten hingga 1 Gbps dengan latensi rendah dan minim gangguan.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white border border-blue-100 shadow-2xs">
+              <p class="font-bold text-xs text-blue-800 mb-1">Tahan Cuaca</p>
+              <p class="text-xs text-slate-600">Sinyal tidak mudah terpengaruh oleh kondisi cuaca mendung, hujan, atau sekat tembok.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. MATERI KABEL UTP CAT 5E -->
+      <section class="rounded-2xl sm:rounded-3xl border border-slate-200/70 bg-white p-4 sm:p-6 lg:p-8 shadow-[0_4px_24px_rgba(15,23,42,0.03)] space-y-5 sm:space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 text-blue-600 border border-blue-100">${A.ic('book','w-5 h-5')}</span>
+          <div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Bagian 2</span>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900">Kabel UTP Cat 5E</h2>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600">Pengertian UTP (<i>Unshielded Twisted Pair</i>)</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            <b>UTP</b> merupakan singkatan dari <i>Unshielded Twisted Pair</i>. Kabel ini berisi <b>8 kawat tembaga</b> berselubung warna-warni yang dipilin menjadi <b>4 pasang</b>.
+            Fungsi utama dari pilinan kawat tersebut adalah mengurangi interferensi elektromagnetik dan gangguan sinyal antar-kabel. Kabel UTP tidak dilapisi pelindung aluminium <i>foil</i>, sehingga sangat fleksibel dan mudah dipasang.
+          </p>
+        </div>
+
+        <!-- Karakteristik -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Karakteristik & Spesifikasi Kabel Cat 5E</h3>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="p-4 rounded-2xl border border-slate-100 bg-white shadow-2xs space-y-1">
+              <p class="font-bold text-slate-900 text-xs">Panjang Maksimal Jaringan</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Maksimal panjang tanpa <i>repeater</i> adalah <b>100 meter</b> untuk menjaga stabilitas sinyal.</p>
+            </div>
+            <div class="p-4 rounded-2xl border border-slate-100 bg-white shadow-2xs space-y-1">
+              <p class="font-bold text-slate-900 text-xs">Kecepatan Transmisi Data</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Kabel Cat 5E mendukung kecepatan <i>transfer data</i> hingga <b>1 Gbps (<i>Gigabit Ethernet</i>)</b>.</p>
+            </div>
+            <div class="p-4 rounded-2xl border border-slate-100 bg-white shadow-2xs space-y-1">
+              <p class="font-bold text-slate-900 text-xs">Konektor Standar</p>
+              <p class="text-xs text-slate-600 leading-relaxed">Menggunakan konektor modular <b>RJ-45</b> dengan 8 <i>pin</i> kontak tembaga berpresisi tinggi.</p>
+            </div>
+            <div class="p-4 rounded-2xl border border-slate-100 bg-white shadow-2xs space-y-1">
+              <p class="font-bold text-slate-900 text-xs">Standar 4 Pasang Warna</p>
+              <p class="text-xs text-slate-600 leading-relaxed">4 pasang warna standar: Oranye, Hijau, Biru, dan Cokelat dengan padanan putih bergaris.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pembagian Pin -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Peran & Fungsi Pin pada Kabel UTP</h3>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm">
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200/70 space-y-1.5">
+              <p class="font-bold text-emerald-950 text-xs uppercase tracking-wide">Jaringan 100 Mbps (<i>Fast Ethernet</i>)</p>
+              <ul class="text-xs text-emerald-900 space-y-1">
+                <li>• <b><i>Pin</i> 1 & 2:</b> Mengirim sinyal data (<i>Transmit</i> / TX)</li>
+                <li>• <b><i>Pin</i> 3 & 6:</b> Menerima sinyal data (<i>Receive</i> / RX)</li>
+                <li>• <b><i>Pin</i> 4, 5, 7, 8:</b> Tidak membawa data pada 100 Mbps (cadangan)</li>
+              </ul>
+            </div>
+            <div class="p-4 rounded-2xl bg-blue-50/70 border border-blue-200/70 space-y-1.5">
+              <p class="font-bold text-blue-950 text-xs uppercase tracking-wide">Jaringan 1 Gbps (<i>Gigabit</i> & PoE)</p>
+              <p class="text-xs text-blue-900 leading-relaxed">
+                Pada jaringan <i>Gigabit</i>, <b>seluruh 8 <i>pin</i> (<i>Pin</i> 1 sampai 8)</b> bekerja dua arah secara serentak (<i>bidirectional</i>) untuk mentransfer data berkecepatan tinggi serta mendukung penyaluran daya (<i>Power over Ethernet</i> / PoE).
+              </p>
+            </div>
+          </div>
+        </div>
+
+      <!-- 3. STANDAR URUTAN WARNA T568B & KABEL STRAIGHT -->
+      <section class="rounded-2xl sm:rounded-3xl border border-slate-200/70 bg-white p-4 sm:p-6 lg:p-8 shadow-[0_4px_24px_rgba(15,23,42,0.03)] space-y-5 sm:space-y-6">
+        <div class="flex items-center gap-3">
+          <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 text-blue-600 border border-blue-100">${A.ic('plug','w-5 h-5')}</span>
+          <div>
+            <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">Bagian 3</span>
+            <h2 class="text-lg sm:text-xl font-bold text-slate-900">Standar Urutan Warna T568B & Kabel Straight</h2>
+          </div>
+        </div>
+
+        <!-- Standar T568B -->
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600">Mengapa Perlu Standar Pengkabelan?</h3>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Standar pengkabelan internasional (TIA/EIA-568) mengatur urutan warna kabel pada konektor RJ-45 agar setiap instalasi kabel LAN memiliki susunan yang seragam dan kompatibel di mana pun. Dalam praktik pembuatan kabel LAN <i>straight</i>, standar yang baku digunakan adalah <b>T568B</b>.
+          </p>
+        </div>
+
+        <!-- Pengertian Kabel Straight & Perangkat Terhubung -->
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600">Karakteristik Kabel Straight</h3>
+            <p class="text-sm text-slate-700 leading-relaxed">
+              Kabel <b><i>straight-through</i> (lurus)</b> memiliki susunan warna <i>pin</i> yang <b>sama persis di kedua ujung konektornya</b> (Ujung 1 = T568B, Ujung 2 = T568B).
+            </p>
+          </div>
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600">Perangkat yang Dihubungkan</h3>
+            <p class="text-sm text-slate-700 leading-relaxed mb-1.5">Digunakan untuk menghubungkan <b>dua perangkat yang berbeda jenis</b>:</p>
+            <ul class="text-sm text-slate-700 space-y-1">
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Komputer / <i>PC</i> ke <i>Switch</i> atau <i>Hub</i></li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>Komputer / <i>PC</i> ke <i>Router</i></li>
+              <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span><i>Router</i> ke <i>Switch</i> atau <i>Hub</i></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tabel Pemetaan Ujung 1 dan Ujung 2 -->
+        <div class="space-y-3">
+          <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Tabel Pemetaan Standar T568B</h3>
+          <div class="overflow-x-auto rounded-2xl border border-slate-200/70">
+            <table class="w-full text-left text-sm min-w-[540px]">
+              <thead class="bg-slate-50 border-b border-slate-200/70 text-slate-600 font-semibold">
+                <tr>
+                  <th class="p-3.5 pl-4">Pin</th>
+                  <th class="p-3.5">Warna Ujung Konektor 1</th>
+                  <th class="p-3.5">Warna Ujung Konektor 2</th>
+                  <th class="p-3.5 pr-4">Fungsi Jaringan</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-700">
+                ${A.WIRES.map((w,i)=>{
+                  const func = (i===0||i===1)?'<i>Transmit Data</i> (TX)':(i===2||i===5)?'<i>Receive Data</i> (RX)':'Cadangan / <i>Ground</i> / PoE';
+                  return `<tr>
+                    <td class="p-3 pl-4 font-bold text-slate-900">Pin ${i+1}</td>
+                    <td class="p-3 font-semibold text-slate-800"><div class="flex items-center gap-2">${A.wire(w)} <span>${w.name}</span></div></td>
+                    <td class="p-3 font-semibold text-slate-800"><div class="flex items-center gap-2">${A.wire(w)} <span>${w.name}</span></div></td>
+                    <td class="p-3 pr-4 text-xs text-slate-600">${func}</td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Aksi Selanjutnya -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="#/simulasi" class="${A.btn}">Coba Simulasi Urutan Kabel Straight</a>
+
+        </div>
+      </section>
+    </div>`;
+  }
+};
+P.utp = P.materi;
+P.t568b = P.materi;
+P.tujuan = P.materi;
+P.lan = P.materi;
+P.tester = {
+  t: 'Panduan Praktik',
+  render: el => { location.hash = '#/panduan'; }
+};
+P.beranda={t:'Kabelin',nonav:1,landing:1,render:el=>{
+const lk=[['materi','Materi'],['alat','Alat & Bahan'],['panduan','Panduan Praktik']];
+const cards=A.WIRES.map((w,i)=>`<div class="wire-card flex items-center gap-2 px-3 py-2"><span class="text-xs font-bold text-slate-400">${i+1}</span>${A.wire(w)}<span class="text-xs sm:text-sm font-semibold text-slate-700">${w.name}</span></div>`).join('');
+const footer=[['book','Materi'],['wrench','Alat & Bahan'],['clip','Panduan Praktik'],['check','Evaluasi']];
+el.innerHTML=`<div class="landing-shell mx-auto">
+<nav aria-label="Menu dashboard" class="relative mx-4 mt-4 rounded-2xl border border-slate-200/60 bg-white/80 backdrop-blur-md px-5 py-3 shadow-[0_4px_20px_rgba(15,23,42,0.04)] sm:mx-8 sm:mt-5 sm:px-6"><div class="flex items-center justify-between"><a href="#/beranda" class="inline-flex items-center gap-2.5 font-bold text-lg tracking-tight text-slate-900 transition hover:opacity-85"><span class="flex items-center justify-center w-8 h-8 rounded-xl bg-blue-50 text-blue-600 border border-blue-100/60">${A.ic('plug','w-4 h-4 text-blue-600')}</span>Kabelin</a><ul class="hidden md:flex items-center gap-1.5 sm:gap-2">${lk.map(([id,t])=>`<li><a href="#/${id}" class="inline-flex items-center px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-slate-950 hover:bg-slate-100/80 transition-all">${t}</a></li>`).join('')}<li class="ml-1"><a href="#/materi" class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.98] shadow-[0_4px_12px_rgba(37,99,235,0.25)] transition-all">Mulai Belajar</a></li></ul><button id="dash-burger" type="button" aria-expanded="false" aria-label="Buka menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div><div id="dash-menu" class="hidden md:hidden pt-3 mt-3 border-t border-slate-100"><ul class="flex flex-col gap-1.5 pb-1">${lk.map(([id,t])=>`<li><a href="#/${id}" class="flex items-center px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 transition-colors">${t}</a></li>`).join('')}<li class="pt-2"><a href="#/materi" class="flex items-center justify-center w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-[0_4px_12px_rgba(37,99,235,0.25)] transition-all">Mulai Belajar</a></li></ul></div></nav>
+<section class="relative px-5 pb-2 pt-10 text-center sm:px-10 sm:pt-14" style="min-height:45vh">
+<div class="pointer-events-none absolute inset-x-0 top-20 mx-auto h-[420px] max-w-4xl rounded-full" style="background:radial-gradient(ellipse at center,rgba(96,165,250,.17),rgba(219,234,254,.08) 42%,transparent 72%)"></div>
+<div class="relative mx-auto max-w-4xl">
+<h1 id="h1" tabindex="-1" class="mx-auto max-w-4xl text-3xl font-bold leading-[1.15] tracking-tight text-slate-950 sm:text-5xl lg:text-6xl"><span class="sm:whitespace-nowrap">Semua berawal dari kenalan.</span><br><span class="text-slate-500">Yuk, jelajahi dunia jaringan!</span></h1>
+<p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">Pernah dengar LAN, kabel UTP, atau konektor RJ45? Kenalan dulu dengan dasar-dasar jaringan komputer, lalu coba sendiri lewat simulasi dan praktik</p>
+</div>
+<div class="mx-auto mt-8 max-w-4xl border-t border-slate-100 pt-6"><p class="mb-4 text-[13px] font-semibold tracking-wider text-slate-500 text-center">JELAJAHI MATERI PEMBELAJARAN</p><div class="flex flex-wrap items-center justify-center gap-x-7 gap-y-3">${footer.map(([ic,t])=>`<a href="#/${({'Materi':'materi','Alat & Bahan':'alat','Panduan Praktik':'panduan','Evaluasi':'evaluasi'})[t]}" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900">${A.ic(ic,'w-4 h-4')}<span>${t}</span></a>`).join('')}</div></div>
+</section>
+<section class="px-5 pt-10 pb-4 sm:px-10">
+<div class="mx-auto max-w-md text-center flex flex-col items-center">
+<p class="mb-4 text-center text-[13px] font-semibold tracking-wider text-slate-500">Kenalan Dulu, Yuk!</p>
+<img src="qr-kesiapan.png" alt="QR Code Diagnostik Non Kognitif" class="w-44 h-44 sm:w-52 sm:h-52 object-contain rounded-2xl">
+<p class="mt-3 text-xs text-slate-400">Arahkan kamera kalian ke kode QR di atas</p>
+</div>
+</section>
+<section id="tujuan-reveal" class="px-5 py-12 sm:px-10">
+<div class="mx-auto w-fit max-w-full">
+<p class="mb-6 text-center text-[13px] font-semibold tracking-wider text-slate-500">TUJUAN PEMBELAJARAN</p>
+<ol class="space-y-3 w-fit max-w-full">
+<li class="flex items-center gap-3 rounded-lg bg-white/90 border border-slate-200/60 px-4 py-3 shadow-[0_2px_8px_rgba(15,23,42,0.05)] whitespace-nowrap"><span class="shrink-0 font-bold text-xs text-blue-600 tracking-wide">DTJ.X.1</span><span class="text-sm text-slate-700">Murid mampu memahami konsep dasar jaringan LAN.</span></li>
+<li class="flex items-center gap-3 rounded-lg bg-white/90 border border-slate-200/60 px-4 py-3 shadow-[0_2px_8px_rgba(15,23,42,0.05)] whitespace-nowrap"><span class="shrink-0 font-bold text-xs text-blue-600 tracking-wide">DTJ.X.2</span><span class="text-sm text-slate-700">Murid mampu mengidentifikasi fungsi alat dan bahan yang digunakan dalam pembuatan kabel jaringan LAN.</span></li>
+<li class="flex items-center gap-3 rounded-lg bg-white/90 border border-slate-200/60 px-4 py-3 shadow-[0_2px_8px_rgba(15,23,42,0.05)] whitespace-nowrap"><span class="shrink-0 font-bold text-xs text-blue-600 tracking-wide">DTJ.X.3</span><span class="text-sm text-slate-700">Murid mampu menjelaskan susunan warna kabel UTP straight berdasarkan standar pengkabelan T568B.</span></li>
+<li class="flex items-center gap-3 rounded-lg bg-white/90 border border-slate-200/60 px-4 py-3 shadow-[0_2px_8px_rgba(15,23,42,0.05)] whitespace-nowrap"><span class="shrink-0 font-bold text-xs text-blue-600 tracking-wide">DTJ.X.4</span><span class="text-sm text-slate-700">Murid mampu membuat kabel jaringan LAN straight dengan baik dan benar.</span></li>
+<li class="flex items-center gap-3 rounded-lg bg-white/90 border border-slate-200/60 px-4 py-3 shadow-[0_2px_8px_rgba(15,23,42,0.05)] whitespace-nowrap"><span class="shrink-0 font-bold text-xs text-blue-600 tracking-wide">DTJ.X.5</span><span class="text-sm text-slate-700">Murid mampu menguji hasil pembuatan kabel LAN straight menggunakan LAN tester.</span></li>
+</ol>
+</div>
+</section>
+<footer class="flex flex-col items-center justify-between gap-2 border-t border-slate-100 bg-slate-50/70 px-6 py-3 text-center text-xs text-slate-400 sm:flex-row sm:px-9"><span>© Kabelin — Belajar Merakit Kabel LAN</span><span>Pelajari • Simulasikan • Praktikkan</span></footer></div>`;const b=el.querySelector('#dash-burger'),m=el.querySelector('#dash-menu');if(b&&m){b.onclick=()=>{const h=m.classList.toggle('hidden');b.setAttribute('aria-expanded',!h);b.innerHTML=h?'<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>':'<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>'}};
+
+}}
+P.alat={
+  t: 'Alat dan Bahan',
+  render: el => {
+    el.innerHTML = `<div class="space-y-6">
+      <p class="text-sm sm:text-base text-slate-600 -mt-2">Siapkan semuanya sebelum mulai supaya pekerjaan tidak terputus di tengah jalan.</p>
+      
+      <div class="rounded-2xl sm:rounded-3xl border border-slate-200/70 bg-white p-4 sm:p-6 lg:p-8 shadow-[0_4px_24px_rgba(15,23,42,0.03)] divide-y divide-slate-100">
+        ${A.TOOLS.map(x => `
+          <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 py-5 first:pt-0 last:pb-0">
+            <!-- Kolom 1: Foto / Gambar Alat (Area Kiri) -->
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-50 border border-slate-200/70 p-2 flex items-center justify-center shrink-0 overflow-hidden shadow-2xs">
+              <img src="${x.img}" data-filename="${x.img}" alt="${x.n}" class="w-full h-full object-contain" onerror="if(!this.dataset.retried){this.dataset.retried=1;this.src='images/'+this.dataset.filename;}else{this.classList.add('hidden');this.nextElementSibling.classList.remove('hidden');}">
+              <div class="hidden w-full h-full flex items-center justify-center p-1">
+                ${A.icons[x.i] || A.ic('wrench', 'w-8 h-8 text-slate-400')}
+              </div>
+            </div>
+
+            <!-- Kolom 2: Nama Alat -->
+            <div class="sm:w-56 shrink-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h2 class="font-bold text-slate-900 text-base sm:text-lg">${x.n}</h2>
+                ${x.optional ? `<span class="inline-block text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 border border-slate-200">OPSIONAL</span>` : ''}
+              </div>
+              <span class="text-xs text-slate-400 font-medium block mt-0.5">${x.k}</span>
+            </div>
+
+            <!-- Kolom 3: Penjelasan / Fungsi -->
+            <div class="flex-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p>${x.f}</p>
+              ${x.u ? `<p class="mt-1 text-slate-400 text-xs italic">${x.u}</p>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>`;
+  }
+};
+
+P.checklist = {
+  t: 'Panduan Praktik',
+  render: el => { location.hash = '#/panduan'; }
+};
+// P.t568b merged into P.materi
+P.progres={t:'Progres Sesi',nonav:1,render:el=>{
+const L=A.NAV.filter(n=>!['beranda','progres'].includes(n[0])),n=L.filter(x=>A.done.has(x[0])).length;
+el.innerHTML=`<p class="mb-2 font-semibold">${n} dari ${L.length} bagian selesai</p><progress class="w-full h-3" max="${L.length}" value="${n}" aria-label="Progres sesi"></progress>
+<ul class="card divide-y divide-line/30 mt-4">${L.map(x=>`<li><a class="flex justify-between p-4 min-h-[48px] hover:bg-brand-100" href="#/${x[0]}"><span>${x[1]}</span><span class="inline-flex items-center gap-1">${A.done.has(x[0])?A.ic('check','w-4 h-4')+' Selesai':'Belum'}</span></a></li>`).join('')}</ul>
+<p class="text-sm text-ink-700 mt-4">Progres hanya berlaku selama sesi browser ini. Progres tidak tersimpan di server.</p>`}};
+})(App);
+</script>
+<script>(function(A){
+const W=A.WIRES,by=id=>W.find(w=>w.id===id);let slots,sel,res='',st,last=-1,say='',order=[];
+const shuffle=()=>{
+  order=[...W];
+  for(let i=order.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [order[i],order[j]]=[order[j],order[i]];
+  }
+  if(order.every((w,i)=>w.id===W[i].id)){
+    [order[0],order[1]]=[order[1],order[0]];
+  }
+};
+const reset=()=>{last=-1;slots=Array(8).fill(null);sel=null;res='';st=Array(8).fill(null);shuffle()};
+A.pages.simulasi={t:'Simulasi Penyusunan Kabel Straight',render:el=>{if(!slots)reset();el.innerHTML='<div id="live" class="sr-only" role="status"></div><div id="st"></div>';bind(el);draw(el)}};
+
+function draw(el,f){
+  const bank=order.filter(w=>!slots.includes(w.id));
+  el.querySelector('#st').innerHTML=`<div class="space-y-6">
+    <p class="text-sm text-slate-600 -mt-2">Pilih kabel dari Bank Kabel, lalu klik pin tujuan pada Konektor RJ-45 untuk menempatkannya. Anda juga dapat melakukan drag & drop secara langsung.</p>
+    <div class="flex items-center justify-between text-xs sm:text-sm font-semibold text-slate-700 bg-slate-50 border border-slate-200/70 px-4 py-2.5 rounded-xl">
+      <span>${sel ? '<span class="text-blue-600 font-bold">'+by(sel).name+'</span> dipilih. Klik pin tujuan pada konektor.' : '<span class="font-bold text-slate-900">'+slots.filter(Boolean).length+' dari 8 pin</span> telah terisi.'}</span>
+      <span class="text-slate-400 text-xs hidden sm:inline">Standar Pengkabelan: T568B</span>
+    </div>
+
+    <div class="rounded-2xl sm:rounded-3xl border border-slate-200/70 bg-white p-4 sm:p-6 lg:p-7 shadow-[0_4px_24px_rgba(15,23,42,0.03)] grid lg:grid-cols-[1fr_2.5fr] gap-5 sm:gap-6 items-start">
+      <!-- Bank Kabel -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-bold text-slate-900 text-sm sm:text-base">Bank Kabel</h2>
+          <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">${bank.length} tersisa</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
+          ${bank.map(w => `
+            <button data-w="${w.id}" draggable="true" aria-pressed="${sel===w.id}" class="flex items-center gap-3 border rounded-xl p-2.5 min-h-[46px] text-left transition-all ${sel===w.id ? 'bg-blue-50 border-blue-600 ring-2 ring-blue-500/20 text-blue-950 font-semibold shadow-xs' : 'border-slate-200/80 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-700'}">
+              ${A.wire(w)}
+              <span class="text-xs sm:text-sm flex-1 font-medium">${w.name}</span>
+            </button>
+          `).join('') || '<div class="p-4 rounded-xl border border-dashed border-slate-200 text-center text-xs text-slate-400">Semua kabel telah ditempatkan ke konektor.</div>'}
+        </div>
+      </div>
+
+      <!-- Konektor RJ-45 -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="font-bold text-slate-900 text-sm sm:text-base">Konektor RJ-45</h2>
+          <span class="text-xs text-slate-400">Urutan Pin 1 s.d. 8</span>
+        </div>
+        <div class="rounded-2xl border border-blue-100 bg-blue-50/40 p-3 sm:p-4">
+          <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+            ${slots.map((id, i) => {
+              const w = id && by(id);
+              const s = st[i];
+              const isSel = sel && slots[i] === sel;
+              const borderClass = s === 'ok'
+                ? 'border-emerald-300 bg-emerald-50/40 ring-1 ring-emerald-400/20'
+                : s === 'bad'
+                ? 'border-rose-300 bg-rose-50/40 ring-1 ring-rose-400/20'
+                : isSel
+                ? 'bg-blue-50 border-blue-500 ring-2 ring-blue-500/20'
+                : 'border-slate-200/80 bg-white hover:border-slate-300 shadow-2xs';
+
+              return `
+                <button data-s="${i}" ${id ? 'draggable="true"' : ''} aria-label="Pin ${i+1}, ${w ? w.name : 'kosong'}" class="flex sm:flex-col items-center justify-between sm:justify-start gap-2.5 sm:gap-2 border rounded-xl p-2.5 sm:py-3 sm:px-1.5 min-h-[54px] sm:min-h-[175px] transition-all ${borderClass} ${i===last?'pop':''}">
+                  <!-- Nomor Pin -->
+                  <span class="text-xs font-bold ${s==='ok'?'text-emerald-700':s==='bad'?'text-rose-700':'text-slate-800'}">Pin ${i+1}</span>
+                  
+                  <!-- Visual Kabel -->
+                  ${w ? A.wire(w, 1) : '<span class="w-12 h-3.5 sm:w-4 sm:h-[68px] rounded-full border-2 border-dashed border-slate-300 bg-slate-50/80"></span>'}
+                  
+                  <!-- Nama Warna (Tinggi Seragam) -->
+                  <div class="min-h-[32px] flex items-center justify-center text-center">
+                    <span class="text-[11px] leading-tight font-medium text-slate-700">${w ? w.name : '<span class="text-slate-400">Kosong</span>'}</span>
+                  </div>
+                  
+                  <!-- Badge Status Rapi & Sejajar -->
+                  <div class="mt-0.5 sm:mt-auto flex items-center justify-center w-full">
+                    ${s === 'ok' ? `
+                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200/80 shadow-2xs whitespace-nowrap">
+                        <svg class="w-3 h-3 text-emerald-700 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Benar
+                      </span>
+                    ` : s === 'bad' ? `
+                      <span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-200/80 shadow-2xs whitespace-nowrap">
+                        <svg class="w-3 h-3 text-rose-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+                        Perbaiki
+                      </span>
+                    ` : `
+                      <span class="hidden sm:block h-5"></span>
+                    `}
+                  </div>
+                </button>
+              `;
+            }).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feedback Pesan -->
+    <div id="fb">${res}</div>
+
+    <!-- Tombol Aksi -->
+    <div class="flex flex-wrap items-center gap-3 pt-2">
+      <button data-a="check" class="${A.btn}">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        Periksa Jawaban
+      </button>
+      <button data-a="reset" class="${A.btn2}">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        Atur Ulang
+      </button>
+      ${sel&&slots.includes(sel)?`
+        <button data-a="back" class="${A.btn2}">
+          Kembalikan ke Bank
+        </button>
+      `:''}
+    </div>
+  </div>`;
+  el.querySelector('#live').textContent=say;
+  if(f)el.querySelector(f)?.focus();
+}
+
+function place(i){
+  const w=by(sel);
+  if(slots[i]===sel){sel=null;last=-1;say='Pilihan dibatalkan.';return}
+  const from=slots.indexOf(sel),t=slots[i];
+  slots[i]=sel;
+  if(from>-1)slots[from]=t;
+  sel=null;last=i;
+  say=w.name+' ditempatkan di pin '+(i+1)+'.'+(t?' '+by(t).name+(from>-1?' dipindah ke pin '+(from+1):' kembali ke bank')+'.':'');
+}
+
+function bind(el){
+  el.onclick=e=>{
+    const b=e.target.closest('[data-w],[data-s],[data-a]');
+    if(!b)return;
+    const d=b.dataset;
+    if(d.w){
+      sel=sel===d.w?null:d.w;
+      say=sel?by(sel).name+' dipilih. Pilih pin tujuan.':'Pilihan dibatalkan.';
+      draw(el,`[data-w="${d.w}"]`);
+    } else if(d.s!==undefined){
+      const i=+d.s;
+      if(sel){place(i);res='';st.fill(null)}
+      else if(slots[i]){sel=slots[i];say=by(sel).name+' dipilih. Pilih pin tujuan.'}
+      draw(el,`[data-s="${i}"]`);
+    } else if(d.a==='back'){
+      const k=slots.indexOf(sel);
+      if(k>-1)slots[k]=null;
+      say=by(sel).name+' dikembalikan ke bank.';
+      sel=null;res='';st.fill(null);
+      draw(el);
+    } else if(d.a==='reset'){
+      const go=()=>{reset();say='Simulasi diatur ulang.';draw(el)};
+      slots.some(Boolean)?A.ask('Kembalikan semua kabel ke bank? Susunan Anda akan hilang.','Atur Ulang',go):go();
+    } else if(d.a==='check'){
+      check(el);
+    }
+  };
+  el.ondragstart=e=>{
+    const b=e.target.closest('[data-w],[data-s]');
+    if(!b)return;
+    sel=b.dataset.w||slots[+b.dataset.s];
+    e.dataTransfer.setData('text/plain',sel);
+  };
+  el.ondragover=e=>{
+    if(e.target.closest('[data-s]'))e.preventDefault();
+  };
+  el.ondrop=e=>{
+    const b=e.target.closest('[data-s]');
+    if(!b||!sel)return;
+    e.preventDefault();
+    place(+b.dataset.s);
+    res='';st.fill(null);
+    draw(el);
+  };
+}
+
+function check(el){
+  if(slots.includes(null)){
+    st=slots.map(x=>x?null:'empty');
+    res=A.notice('warn','Masih ada posisi pin yang kosong. Tempatkan semua delapan kabel sebelum memeriksa susunan.');
+  } else {
+    st=slots.map((id,i)=>id===W[i].id?'ok':'bad');
+    const bad=st.map((s,i)=>s==='bad'?i:-1).filter(i=>i>-1);
+    if(!bad.length){
+      res=A.notice('ok','Susunan simulasi benar! Seluruh 8 pin kabel straight (standar T568B) telah tersusun dengan tepat.');
+      A.mark('simulasi');
+    } else {
+      const badPins = bad.map(i => `Pin ${i+1}`).join(', ');
+      res=A.notice('err', `Belum tepat. ${8-bad.length} dari 8 pin benar. Periksa kembali: <b>${badPins}</b>. Lalu coba lagi.`);
+    }
+  }
+  say=res.replace(/<[^>]+>/g,'');
+  draw(el);
+  el.querySelector('#fb')?.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+})(App);
+</script>
+<script>(function(A){
+const S = A.STEPS;
+const T = A.TOOLS;
+let doneSteps = new Set();
+let checkedTools = new Set();
+let testedDone = false;
+
+try {
+  const saved = JSON.parse(sessionStorage.getItem('panduan_done') || '[]');
+  doneSteps = new Set(saved);
+} catch(e){}
+
+try {
+  const savedT = JSON.parse(sessionStorage.getItem('panduan_tools') || '[]');
+  checkedTools = new Set(savedT);
+} catch(e){}
+
+try {
+  testedDone = sessionStorage.getItem('panduan_tested') === '1';
+} catch(e){}
+
+A.pages.panduan = {
+  t: 'Panduan Praktik, Perakitan & Pengujian Kabel Straight',
+  render: el => {
+    bind(el);
+    draw(el);
+  }
+};
+A.pages.checklist = A.pages.panduan;
+A.pages.tester = A.pages.panduan;
+
+function rj45Illustration() {
+  const W = A.WIRES;
+  const pinRows = W.map((w, i) => {
+    const x = 32 + i * 12;
+    return `
+      <!-- Pin Contact ${i+1} -->
+      <rect x="${x}" y="28" width="6" height="24" rx="1.5" fill="#f59e0b"/>
+      <text x="${x + 3}" y="61" font-size="8" font-family="sans-serif" font-weight="bold" fill="#64748b" text-anchor="middle">${i+1}</text>
+      
+      <!-- Wire ${i+1} (${w.name}) -->
+      <rect x="${x}" y="70" width="6" height="42" rx="1" fill="${w.s ? '#ffffff' : w.c}" stroke="#e2e8f0" stroke-width="0.5"/>
+      ${w.s ? `<line x1="${x+3}" y1="70" x2="${x+3}" y2="112" stroke="${w.c}" stroke-width="6" stroke-dasharray="4,3"/>` : ''}
+    `;
+  }).join('');
+
+  return `
+<svg viewBox="0 0 160 145" class="w-full max-w-[190px] mx-auto select-none" aria-label="Ilustrasi posisi konektor RJ-45 dan kabel">
+  <text x="80" y="14" font-size="9" font-family="sans-serif" fill="#64748b" text-anchor="middle">ujung colok (ke port)</text>
+  
+  <!-- Connector body outline -->
+  <rect x="22" y="20" width="116" height="48" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  
+  ${pinRows}
+  
+  <text x="80" y="130" font-size="9" font-family="sans-serif" fill="#64748b" text-anchor="middle">kawat dari kabel</text>
+</svg>
+  `;
+}
+
+function draw(el) {
+  const doneCount = doneSteps.size;
+  const allDone = doneCount === S.length;
+  const toolsCount = checkedTools.size;
+  const reqToolIndexes = T.map((t, idx) => (!t.optional && !t.n.toLowerCase().includes('stripper') ? idx : -1)).filter(i => i !== -1);
+  const allToolsReady = reqToolIndexes.every(i => checkedTools.has(i));
+
+  el.innerHTML = `<div class="space-y-6">
+    <p class="text-sm sm:text-base text-slate-600 -mt-2">Panduan lengkap dari persiapan alat dan bahan, sembilan langkah perakitan kabel, hingga pengujian fungsi menggunakan LAN tester.</p>
+    
+    <div class="grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] gap-6 lg:gap-8 items-start pt-2">
+      <!-- Kolom Kiri: Fixed / Sticky di Desktop -->
+      <div class="lg:sticky lg:top-6 space-y-4">
+        <!-- Kartu Kemajuan Terpadu -->
+        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+            <span class="text-xs font-bold text-slate-900 uppercase tracking-wider">Status Praktik</span>
+            <span class="text-[11px] font-semibold text-blue-600">3 Tahap</span>
+          </div>
+
+          <!-- 1. Kesiapan Alat & Bahan -->
+          <div class="space-y-1.5 pb-3 border-b border-slate-100">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-700">1. Alat &amp; Bahan</span>
+              <span class="font-bold tabular-nums ${allToolsReady ? 'text-emerald-600' : 'text-slate-800'}">${toolsCount} dari ${T.length}</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="${allToolsReady ? 'bg-emerald-500' : 'bg-blue-600'} h-2 rounded-full transition-all duration-300" style="width:${allToolsReady ? 100 : Math.round(toolsCount / T.length * 100)}%"></div>
+            </div>
+          </div>
+
+          <!-- 2. Kemajuan Langkah Perakitan -->
+          <div class="space-y-1.5 pb-3 border-b border-slate-100">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-700">2. Perakitan</span>
+              <span class="font-bold tabular-nums ${allDone ? 'text-emerald-600' : 'text-slate-800'}">${doneCount} dari ${S.length}</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="${allDone ? 'bg-emerald-500' : 'bg-blue-600'} h-2 rounded-full transition-all duration-300" style="width:${Math.round(doneCount / S.length * 100)}%"></div>
+            </div>
+          </div>
+
+          <!-- 3. Status Uji LAN Tester -->
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-semibold text-slate-700">3. Uji LAN Tester</span>
+              <span class="font-bold ${testedDone ? 'text-emerald-600' : 'text-slate-800'}">${testedDone ? 'Selesai ✓' : 'Belum'}</span>
+            </div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+              <div class="${testedDone ? 'bg-emerald-500' : 'bg-blue-600'} h-2 rounded-full transition-all duration-300" style="width:${testedDone ? 100 : 0}%"></div>
+            </div>
+          </div>
+
+          <button data-action="reset-all" class="w-full mt-2 py-2 px-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 active:scale-[0.98] text-xs font-semibold text-slate-700 transition shadow-2xs">
+            Atur ulang semua
+          </button>
+        </div>
+
+        <!-- Kartu Ilustrasi Konektor & Kawat -->
+        <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs text-center space-y-3">
+          ${rj45Illustration()}
+          <p class="text-[11px] text-slate-500 leading-relaxed text-left border-t border-slate-100 pt-3">
+            Posisi konektor saat kawat dimasukkan: klip di sisi bawah, kontak emas menghadap ke atas, pin 1 di kiri.
+          </p>
+        </div>
+      </div>
+
+      <!-- Kolom Kanan: 3 Tahap (Checklist -> Perakitan -> Pengujian Tester) -->
+      <div class="space-y-10">
+        
+        <!-- TAHAP 1: CHECKLIST ALAT & BAHAN (SEBELUM MERAKIT) -->
+        <div class="rounded-2xl border border-blue-200/80 bg-gradient-to-br from-blue-50/40 via-white to-slate-50/60 p-4 sm:p-6 shadow-xs space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-blue-100/70">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+              </span>
+              <div>
+                <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-tight">1. Pemeriksaan Alat &amp; Bahan (Sebelum Merakit)</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Pastikan semua alat dan bahan berikut sudah ada di meja praktik Anda</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold px-3 py-1 rounded-full ${allToolsReady ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-white text-slate-700 border border-slate-200'} self-start sm:self-auto tabular-nums shadow-2xs">
+              ${toolsCount} dari ${T.length} Siap
+            </span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Sebelum memulai langkah pemotongan dan perakitan kabel, centang setiap alat dan bahan yang telah Anda siapkan di meja kerja:
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-2.5">
+            ${T.map((t, idx) => {
+              const isChecked = checkedTools.has(idx);
+              return `
+                <label class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer select-none transition-all ${isChecked ? 'bg-blue-50/80 border-blue-300 text-blue-900 shadow-2xs' : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'}">
+                  <input type="checkbox" data-tool="${idx}" class="sr-only" ${isChecked ? 'checked' : ''}>
+                  <span class="w-4 h-4 rounded border flex items-center justify-center shrink-0 transition-colors ${isChecked ? 'bg-blue-600 border-blue-600 text-white' : 'bg-white border-slate-300'}">
+                    ${isChecked ? '<svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' : ''}
+                  </span>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-xs sm:text-sm font-semibold truncate ${isChecked ? 'text-blue-950 font-bold' : 'text-slate-800'}">
+                      ${t.n} ${(t.optional || t.n.toLowerCase().includes('stripper')) ? '<span class="text-xs font-normal text-slate-500">(Opsional)</span>' : ''}
+                    </p>
+                    <p class="text-[11px] text-slate-500">${t.k}</p>
+                  </div>
+                </label>
+              `;
+            }).join('')}
+          </div>
+
+          ${allToolsReady ? `
+            <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2">
+              <svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span><strong>Alat &amp; bahan lengkap!</strong> Silakan mulai perakitan kabel pada Langkah 1 di bawah ini.</span>
+            </div>
+          ` : `
+            <div class="p-2.5 rounded-xl bg-amber-50 border border-amber-200/70 text-xs text-amber-800 flex items-center gap-2">
+              <svg class="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Periksa dan centang alat yang sudah ada di meja Anda sebelum merakit.</span>
+            </div>
+          `}
+        </div>
+
+        <!-- TAHAP 2: SEMBILAN LANGKAH PERAKITAN KABEL STRAIGHT -->
+        <div class="space-y-6 pt-2">
+          <div class="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+            <span class="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center shrink-0">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            </span>
+            <div>
+              <h3 class="font-bold text-slate-900 text-base sm:text-lg">2. Sembilan Langkah Perakitan Kabel Straight</h3>
+              <p class="text-xs text-slate-500">Ikuti setiap langkah secara berurutan dan tandai yang sudah selesai</p>
+            </div>
+          </div>
+
+          <div class="space-y-8 divide-y divide-slate-100">
+            ${S.map((s, idx) => {
+              const isDone = doneSteps.has(idx);
+              return `
+                <div class="flex items-start gap-4 pt-6 first:pt-0">
+                  <!-- Nomor Langkah Bulat -->
+                  <span class="w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold transition-all ${isDone ? 'bg-emerald-600 text-white shadow-xs' : 'bg-blue-50 text-blue-600 border border-blue-100'}">
+                    ${isDone ? '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' : (idx + 1)}
+                  </span>
+
+                  <!-- Isi Konten Langkah -->
+                  <div class="space-y-2.5 flex-1">
+                    <h4 class="font-bold text-base sm:text-lg leading-snug transition-colors ${isDone ? 'text-emerald-900 font-extrabold' : 'text-slate-900'}">
+                      ${s.t}
+                    </h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      ${s.d}
+                    </p>
+
+                    <!-- Checkbox Tandai Selesai (Hijau saat selesai) -->
+                    <div>
+                      <label class="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl border cursor-pointer select-none text-xs font-semibold transition-all ${isDone ? 'bg-emerald-50 border-emerald-500 text-emerald-800 shadow-2xs' : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'}">
+                        <input type="checkbox" data-step="${idx}" class="sr-only" ${isDone ? 'checked' : ''}>
+                        <span class="w-4 h-4 rounded border flex items-center justify-center shrink-0 transition-colors ${isDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-white border-slate-300'}">
+                          ${isDone ? '<svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' : ''}
+                        </span>
+                        <span>${isDone ? 'Selesai ✓' : 'Tandai selesai'}</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+
+            <!-- Kotak Selesai Seluruh Langkah Perakitan -->
+            ${allDone ? `
+              <div class="pt-6">
+                <div class="p-4 sm:p-5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center gap-3">
+                  <span class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">${A.ic('check','w-5 h-5')}</span>
+                  <div>
+                    <p class="font-bold text-emerald-900 text-sm">Sembilan langkah perakitan telah selesai!</p>
+                    <p class="text-xs text-emerald-700">Kabel Anda siap diuji pada Tahap 3 (LAN Tester) di bawah ini.</p>
+                  </div>
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- TAHAP 3: PENGUJIAN DENGAN LAN TESTER (BAGIAN BAWAH) -->
+        <div id="section-tester" class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-6 shadow-xs space-y-6 pt-5 sm:pt-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </span>
+              <div>
+                <h3 class="font-bold text-slate-900 text-base sm:text-lg leading-tight">3. Pengujian Kabel dengan LAN Tester</h3>
+                <p class="text-xs text-slate-500 mt-0.5">Tahap akhir untuk memverifikasi sambungan dan kontinuitas 8 pin kawat</p>
+              </div>
+            </div>
+            <span class="text-xs font-bold px-3 py-1 rounded-full ${testedDone ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-blue-50 text-blue-700 border border-blue-200'} self-start sm:self-auto">
+              ${testedDone ? 'Pengujian Sukses ✓' : 'Tahap Pengujian'}
+            </span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            LAN <i>tester</i> mengalirkan sinyal listrik melalui setiap kawat di dalam kabel UTP. Kabel <i>straight</i> yang di-<i>crimp</i> dengan baik akan menyalurkan sinyal ke lampu indikator nomor 1 sampai 8 secara berurutan dan sinkron pada unit <i>master</i> dan unit <i>remote</i>.
+          </p>
+
+          <!-- Cara Menguji (4 Langkah Praktis) -->
+          <div class="space-y-3">
+            <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700">Langkah Pengujian pada LAN Tester</h4>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0 shadow-2xs">1</span>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Colokkan salah satu ujung konektor kabel ke <strong>unit utama (<i>master</i>)</strong> LAN <i>tester</i>.</p>
+              </div>
+              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0 shadow-2xs">2</span>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Colokkan ujung konektor lainnya ke <strong>unit <i>remote</i></strong> LAN <i>tester</i>.</p>
+              </div>
+              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0 shadow-2xs">3</span>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Geser sakelar daya <i>tester</i> ke posisi <strong>ON</strong> (atau mode <strong>S / <i>Slow</i></strong> agar urutan lampu mudah diamati).</p>
+              </div>
+              <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold shrink-0 shadow-2xs">4</span>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">Amati lampu LED nomor <strong>1 sampai 8</strong> pada kedua unit secara bersamaan.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabel Diagnosa Hasil Uji & Solusi Masalah -->
+          <div class="space-y-3">
+            <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-700">Membaca Hasil Pengujian &amp; Solusi Perbaikan</h4>
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full text-xs sm:text-sm text-left min-w-[560px]">
+                <thead class="bg-slate-50 border-b border-slate-200 text-slate-800 font-bold">
+                  <tr>
+                    <th class="p-3.5">Hasil Nyala pada Tester</th>
+                    <th class="p-3.5">Kemungkinan Masalah</th>
+                    <th class="p-3.5">Tindakan / Solusi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 text-slate-700">
+                  <tr class="hover:bg-slate-50/50 transition-colors">
+                    <td class="p-3.5 font-medium text-slate-800">Lampu 1-8 menyala berurutan di kedua unit</td>
+                    <td class="p-3.5 text-slate-700">Kabel <i>straight</i> sempurna &amp; sesuai standar T568B.</td>
+                    <td class="p-3.5 text-slate-700">Kabel siap dipakai untuk koneksi jaringan LAN.</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors">
+                    <td class="p-3.5 font-medium text-slate-800">Urutan lampu tidak sama / melompat (misal: 1, 2, 6, 4...)</td>
+                    <td class="p-3.5 text-slate-700">Urutan kawat warna tertukar saat dimasukkan ke RJ-45.</td>
+                    <td class="p-3.5 text-slate-700">Potong konektor yang salah, susun ulang sesuai urutan T568B, lalu pasang konektor baru.</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors">
+                    <td class="p-3.5 font-medium text-slate-800">Satu atau beberapa nomor lampu tidak menyala</td>
+                    <td class="p-3.5 text-slate-700">Kawat belum mentok ke ujung atau <i>pin</i> <i>crimping</i> kurang ditekan.</td>
+                    <td class="p-3.5 text-slate-700">Tekan <i>crimping</i> ulang dengan kuat. Jika tetap mati, ganti dengan konektor baru.</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/50 transition-colors">
+                    <td class="p-3.5 font-medium text-slate-800">Semua lampu tidak menyala</td>
+                    <td class="p-3.5 text-slate-700"><i>Tester</i> belum ON, baterai habis, atau kabel putus.</td>
+                    <td class="p-3.5 text-slate-700">Periksa sakelar dan baterai <i>tester</i>, lalu cek kedua colokan konektor.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Konfirmasi Pengujian Fisik Kabel -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/80 space-y-2.5">
+            <h4 class="text-xs sm:text-sm font-bold text-slate-800">Konfirmasi Hasil Pengujian Kabel Fisik Anda</h4>
+            <label class="flex items-center gap-3 p-3 rounded-xl border cursor-pointer select-none transition-all ${testedDone ? 'bg-emerald-50 border-emerald-400 text-emerald-900 shadow-2xs' : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'}">
+              <input type="checkbox" data-action="toggle-tested" class="sr-only" ${testedDone ? 'checked' : ''}>
+              <span class="w-5 h-5 rounded-md border flex items-center justify-center shrink-0 transition-colors ${testedDone ? 'bg-emerald-600 border-emerald-600 text-white' : 'bg-white border-slate-300'}">
+                ${testedDone ? '<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>' : ''}
+              </span>
+              <div class="flex-1">
+                <p class="text-xs sm:text-sm font-semibold">Saya telah menguji kabel fisik pada LAN <i>tester</i> dan lampu 1 s.d. 8 menyala berurutan dengan normal</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Kotak Lanjut ke Evaluasi -->
+          <div class="pt-2">
+            <div class="p-5 rounded-2xl bg-blue-50/80 border border-blue-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <span class="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-xs">${A.ic('check','w-5 h-5')}</span>
+                <div>
+                  <p class="font-bold text-blue-950 text-sm">Praktik dan Pengujian Selesai!</p>
+                  <p class="text-xs text-blue-700">Lanjutkan untuk menguji pemahaman teori dan praktik Anda di modul Evaluasi.</p>
+                </div>
+              </div>
+              <a href="#/evaluasi" class="${A.btn} shrink-0">Lanjut ke Evaluasi →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>`;
+}
+
+function bind(el) {
+  el.onclick = e => {
+    const btn = e.target.closest('[data-action="reset-all"]');
+    if (btn) {
+      doneSteps.clear();
+      checkedTools.clear();
+      testedDone = false;
+      try { 
+        sessionStorage.removeItem('panduan_done'); 
+        sessionStorage.removeItem('panduan_tools'); 
+        sessionStorage.removeItem('panduan_tested'); 
+      } catch(e){}
+      draw(el);
+      return;
+    }
+  };
+
+  el.onchange = e => {
+    const chkTool = e.target.closest('input[data-tool]');
+    if (chkTool) {
+      const idx = +chkTool.dataset.tool;
+      if (chkTool.checked) {
+        checkedTools.add(idx);
+      } else {
+        checkedTools.delete(idx);
+      }
+      try {
+        sessionStorage.setItem('panduan_tools', JSON.stringify([...checkedTools]));
+      } catch(e){}
+      draw(el);
+      return;
+    }
+
+    const chkStep = e.target.closest('input[data-step]');
+    if (chkStep) {
+      const idx = +chkStep.dataset.step;
+      if (chkStep.checked) {
+        doneSteps.add(idx);
+      } else {
+        doneSteps.delete(idx);
+      }
+      try {
+        sessionStorage.setItem('panduan_done', JSON.stringify([...doneSteps]));
+      } catch(e){}
+      if (doneSteps.size === S.length) {
+        A.mark('panduan');
+      }
+      draw(el);
+      return;
+    }
+
+    const chkTested = e.target.closest('input[data-action="toggle-tested"]');
+    if (chkTested) {
+      testedDone = chkTested.checked;
+      try {
+        sessionStorage.setItem('panduan_tested', testedDone ? '1' : '0');
+      } catch(e){}
+      if (testedDone) {
+        A.mark('panduan');
+      }
+      draw(el);
+      return;
+    }
+  };
+}
+})(App);
+</script>
+<script>(function(A){
+const Q=A.QUIZ;let ans,cur,fin;
+const init=()=>{ans=Array(Q.length).fill(null);cur=0;fin=false};
+A.pages.evaluasi={t:'Evaluasi Akhir',nonav:1,render:el=>{if(!ans)init();bind(el);draw(el)}};
+function draw(el,f){fin?result(el):ask(el);if(f)el.querySelector(f)?.focus()}
+function ask(el){
+  if(!Q.length){el.innerHTML=A.notice('err','Evaluasi tidak dapat dimulai. Bank soal kosong.');return}
+  const q=Q[cur],n=ans.filter(x=>x!==null).length;
+  const LTR=['A','B','C','D'];
+  el.innerHTML=`<div class="space-y-6">
+    <div class="rounded-2xl border border-slate-200/70 bg-white/90 p-4 shadow-xs">
+      <div class="flex items-center justify-between text-xs font-semibold text-slate-700 mb-2">
+        <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>Soal ${cur+1} dari ${Q.length}</span>
+        <span class="font-bold text-blue-600 tabular-nums">${n} Terjawab (${Math.round(n/Q.length*100)}%)</span>
+      </div>
+      <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+        <div class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width:${Math.round(n/Q.length*100)}%"></div>
+      </div>
+    </div>
+
+    <div class="rounded-2xl sm:rounded-3xl border border-slate-200/70 bg-white p-4 sm:p-6 lg:p-8 shadow-[0_4px_24px_rgba(15,23,42,0.04)]">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 border border-blue-100">SOAL #${cur+1}</span>
+        <span class="text-xs text-slate-400">Pilihlah salah satu jawaban yang benar</span>
+      </div>
+      <h2 class="text-lg sm:text-xl font-bold text-slate-900 leading-snug mb-6">${q.q}</h2>
+      <div class="space-y-3" role="radiogroup" aria-label="${q.q}">
+        ${q.o.map((o,i)=>{
+          const chk=ans[cur]===i;
+          return `<label class="flex items-center gap-3.5 p-4 rounded-2xl border cursor-pointer transition-all ${chk?'bg-blue-50/70 border-blue-500 ring-2 ring-blue-500/15 shadow-sm text-blue-950 font-medium':'bg-white border-slate-200/80 hover:bg-slate-50 hover:border-slate-300 text-slate-700'}">
+            <input type="radio" class="sr-only" name="q" value="${i}" ${chk?'checked':''}>
+            <span class="flex items-center justify-center w-8 h-8 rounded-xl text-xs font-bold shrink-0 transition-all ${chk?'bg-blue-600 text-white shadow-xs':'bg-slate-100 text-slate-600 border border-slate-200'}">${LTR[i]||(i+1)}</span>
+            <span class="text-sm sm:text-base flex-1">${o}</span>
+            <span class="w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ${chk?'border-blue-600 bg-blue-600 text-white':'border-slate-300 bg-white'}">${chk?'<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>':''}</span>
+          </label>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200/70 bg-white p-5 shadow-xs">
+      <p class="text-xs font-semibold text-slate-400 mb-3 tracking-wider uppercase">Navigasi Nomor Soal</p>
+      <div class="flex flex-wrap gap-2" role="group" aria-label="Nomor soal">
+        ${Q.map((_,i)=>{
+          const isCur = i === cur;
+          const isAns = ans[i] !== null;
+          return `<button data-n="${i}" aria-label="Soal ${i+1}, ${isAns?'terjawab':'belum dijawab'}" ${isCur?'aria-current="true"':''} class="w-10 h-10 rounded-xl text-sm font-bold transition-all ${isCur?'bg-blue-600 text-white shadow-sm ring-2 ring-blue-500/20':isAns?'bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100':'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'}">${i+1}</button>`;
+        }).join('')}
+      </div>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+      <button data-n="${cur-1}" ${cur?'':'disabled'} class="${A.btn2} disabled:opacity-40 disabled:pointer-events-none">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Sebelumnya
+      </button>
+      <div class="flex items-center gap-2">
+        ${cur<Q.length-1?`<button data-n="${cur+1}" class="${A.btn}">Berikutnya <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></button>`:''}
+        <button data-sub="1" class="inline-flex items-center gap-2 font-semibold text-sm rounded-xl px-5 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white shadow-[0_4px_12px_rgba(16,185,129,0.25)] transition-all">
+          Kirim Jawaban
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+function result(el){
+  const ok=Q.filter((q,i)=>ans[i]===q.a).length,sc=Math.round(ok/Q.length*100),pass=sc>=A.CFG.pass,rev=[...new Set(Q.filter((q,i)=>ans[i]!==q.a).map(q=>q.t))];
+  el.innerHTML=`<div class="max-w-2xl mx-auto rounded-3xl border border-slate-200/70 bg-white p-6 sm:p-10 shadow-[0_4px_24px_rgba(15,23,42,0.04)] text-center">
+    <div class="w-20 h-20 mx-auto rounded-3xl flex items-center justify-center mb-5 ${pass?'bg-emerald-50 text-emerald-600 border border-emerald-200':'bg-amber-50 text-amber-600 border border-amber-200'}">
+      <span class="text-3xl font-extrabold tabular-nums">${sc}</span>
+    </div>
+    <h2 class="text-2xl font-bold text-slate-900 mb-2">${pass?'Selamat, Anda Lulus Evaluasi!':'Perlu Belajar Lagi, Tetap Semangat!'}</h2>
+    <p class="text-sm text-slate-600 mb-6">Anda berhasil menjawab <b class="text-slate-900">${ok} dari ${Q.length} soal</b> dengan benar (Ambang kelulusan: ${A.CFG.pass}).</p>
+    ${rev.length ? `<div class="text-left bg-slate-50 rounded-2xl p-5 border border-slate-200/70 mb-6">
+      <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Materi yang disarankan untuk ditinjau:</p>
+      <ul class="space-y-1.5">
+        ${rev.map(t=>`<li><a class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition" href="#/${t}"><svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>${A.LABEL[t]}</a></li>`).join('')}
+      </ul>
+    </div>` : ''}
+    <div class="flex flex-wrap justify-center gap-3 pt-2">
+      <button data-re="1" class="${A.btn2}">Ulangi Evaluasi</button>
+      <a href="#/progres" class="${A.btn}">${pass ? 'Lihat Ringkasan Progres' : 'Kembali ke Materi'}</a>
+    </div>
+    <p class="text-xs text-slate-400 mt-6">Hasil hanya berlaku pada sesi browser ini dan tidak tersimpan secara permanen.</p>
+  </div>`;
+}
+function bind(el){
+el.onclick=e=>{const b=e.target.closest('[data-w],[data-s],[data-a]');if(!b)return;const d=b.dataset;
+if(d.w){sel=sel===d.w?null:d.w;say=sel?by(sel).name+' dipilih. Pilih pin tujuan.':'Pilihan dibatalkan.';draw(el,`[data-w="${d.w}"]`)}
+else if(d.s!==undefined){const i=+d.s;if(sel){place(i);res='';st.fill(null)}else if(slots[i]){sel=slots[i];say=by(sel).name+' dipilih. Pilih pin tujuan.'}draw(el,`[data-s="${i}"]`)}
+else if(d.a==='back'){const k=slots.indexOf(sel);if(k>-1)slots[k]=null;say=by(sel).name+' dikembalikan ke bank.';sel=null;res='';st.fill(null);draw(el)}
+else if(d.a==='reset'){const go=()=>{reset();say='Simulasi diatur ulang.';draw(el)};slots.some(Boolean)?A.ask('Kembalikan semua kabel ke bank? Susunan Anda akan hilang.','Atur Ulang',go):go()}
+else if(d.a==='check')check(el)};
+el.ondragstart=e=>{const b=e.target.closest('[data-w],[data-s]');if(!b)return;sel=b.dataset.w||slots[+b.dataset.s];e.dataTransfer.setData('text/plain',sel)};
+el.ondragover=e=>{if(e.target.closest('[data-s]'))e.preventDefault()};
+el.ondrop=e=>{const b=e.target.closest('[data-s]');if(!b||!sel)return;e.preventDefault();place(+b.dataset.s);res='';st.fill(null);draw(el)}}
+function bind(el){
+  el.onchange=e=>{if(e.target.name==='q'){ans[cur]=+e.target.value;draw(el,'input:checked')}};
+  el.onclick=e=>{const b=e.target.closest('[data-n],[data-sub],[data-re]');if(!b||b.disabled)return;
+  if(b.dataset.n!==undefined){cur=+b.dataset.n;draw(el,'legend')}
+  else if(b.dataset.re){init();draw(el)}
+  else{const u=ans.filter(x=>x===null).length;const go=()=>{fin=true;A.mark('evaluasi');draw(el);window.scrollTo(0,0)};u?A.ask(`Anda belum menjawab ${u} soal. Soal kosong dihitung salah. Tetap kirim?`,'Tetap Kirim',go):go()}}}
+})(App);
+</script>
+<script>(function(A){
+const $=s=>document.querySelector(s),side=$('#side'),menu=$('#menu');
+function nav(k){
+  const L=A.NAV.filter(n=>!['beranda','progres'].includes(n[0])),n=L.filter(x=>A.done.has(x[0])).length;
+  const pct=Math.round(n/L.length*100);
+  $('#sp').innerHTML=`<div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/70">
+    <div class="flex items-center justify-between text-xs font-semibold text-slate-700 mb-2">
+      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-600"></span>Progres Belajar</span>
+      <span class="font-bold text-blue-600 tabular-nums">${n}/${L.length}</span>
+    </div>
+    <div class="w-full bg-slate-200/80 rounded-full h-2 overflow-hidden">
+      <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width:${pct}%"></div>
+    </div>
+  </div>`;
+  $('#mp').textContent=`${n}/${L.length} selesai`;
+  $('#nav').innerHTML=A.NAV.map(([id,l])=>{
+    const isCur = id === k;
+    const isDone = A.done.has(id);
+    return `<li><a href="#/${id}" ${isCur?'aria-current="page"':''} class="flex justify-between items-center min-h-[42px] px-3.5 rounded-xl text-sm transition-all ${isCur?'bg-blue-50 text-blue-700 font-semibold shadow-xs border border-blue-200/70':'text-slate-600 hover:text-slate-950 hover:bg-slate-100/80 font-medium'}"><span class="flex items-center gap-3">${A.ic(A.NAVIC[id],'w-4 h-4')}${l}</span>${isDone?'<span class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200/60">'+A.ic('check','w-3 h-3')+'</span>':''}</a></li>`;
+  }).join('');
+}
+let cur='beranda';
+function close(){$('#bd').classList.add('hidden');side.classList.remove('open');menu.setAttribute('aria-expanded','false')}
+function route(){
+  close();
+  let id=location.hash.replace('#/','')||'beranda';if(id==='tujuan'||id==='lan'||id==='utp'||id==='t568b')id='materi';if(id==='checklist'||id==='tester')id='panduan';cur=A.pages[id]?id:'beranda';
+  const p=A.pages[cur],i=A.NAV.findIndex(n=>n[0]===cur),v=$('#view');
+  document.body.dataset.m=p.landing?'l':'a';
+  document.body.dataset.t=['materi','lan','utp','alat','checklist','keselamatan','t568b'].includes(cur)?'b':['simulasi','panduan','tester','evaluasi'].includes(cur)?'c':'a';
+  v.innerHTML=p.landing?'<div id="pg"></div><div id="pn"></div>':`<div class="mb-6 pb-6 border-b border-slate-200/70"><div class="flex items-center gap-2 mb-2.5"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-100/80">Modul ${i+1} dari ${A.NAV.length}</span><span class="text-xs text-slate-300">•</span><span class="text-xs font-semibold tracking-wide text-slate-400 uppercase">${A.LABEL[cur]||''}</span></div><h1 id="h1" tabindex="-1" class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900">${p.t}</h1></div><div id="pg"></div><div id="pn" class="flex flex-wrap justify-between gap-3 mt-10 pt-6 border-t border-slate-200/70"></div>`;
+  try{p.render($('#pg'))}catch(e){console.error(e);$('#pg').innerHTML=A.notice('err','Bagian ini tidak dapat dimuat. Muat ulang halaman atau kembali ke materi.')}
+  if(!A.MANUAL.includes(cur))A.mark(cur);
+  if(!p.nonav){const pv=A.NAV[i-1],nx=A.NAV[i+1];$('#pn').innerHTML=(pv?`<a href="#/${pv[0]}" class="${A.btn2}">Sebelumnya: ${pv[1]}</a>`:'<span></span>')+(nx?`<a href="#/${nx[0]}" class="${A.btn}">Lanjut: ${nx[1]} </a>`:'')}
+  nav(cur);close();window.scrollTo(0,0);($('#h1')||$('#pg h1')).focus();
+}
+A.onMark=()=>nav(cur);
+menu.onclick=()=>{const o=side.classList.toggle('open');menu.setAttribute('aria-expanded',o);$('#bd').classList.toggle('hidden',!o);if(o)side.querySelector('a').focus()};
+$('#bd').onclick=()=>{close();menu.focus()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&side.classList.contains('open')){close();menu.focus()}});
+addEventListener('hashchange',route);route();
+})(App);
+</script>
+</body>
+</html>
